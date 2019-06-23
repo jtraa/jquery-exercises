@@ -38,6 +38,13 @@
             padding: 40px;
             text-align: center;
         }
+        #box2{
+            background: red;
+            width: 100px;
+            height: 100px;
+            position: relative;
+            
+            }
     </style>
   </head>
   <body>
@@ -54,11 +61,22 @@
         <button id="btnSlideUp">Slide up</button>
         <button id="btnSlideDown">Slide down</button>
         <button id="btnSlideTog">Slide Toggle</button>
+        <button id="btnStop">Stop</button>
 
         <hr>
 
         <div id="box">
             <h1>Hello World</h1>
+        </div>
+
+        <hr>
+
+        <button id="btnMoveLeft">Move Left</button>
+        <button id="btnMoveRight">Move Right</button>
+        <button id="btnMoveAround">Move Around</button>
+
+        <div id="box2">
+            
         </div>
 
        
@@ -94,6 +112,50 @@
             $('#box').slideToggle(1000);
                 
         });
+        $('#btnStop').click(function(){
+            $('#box').stop();
+                
+        });
+
+
+        $('#btnMoveRight').click(function(){
+            $('#box2').animate({
+                left: 500,
+                height: '300px',
+                width: '300px',
+                opacity: '0.5'
+            });
+                
+        });
+        $('#btnMoveLeft').click(function(){
+            $('#box2').animate({
+                left: 0,
+                height: '100px',
+                width: '100px',
+                opacity: '1'
+            });
+                
+        });
+        $('#btnMoveAround').click(function(){
+            var box = $('#box2')
+            box.animate({
+                left: 300                
+            });
+            box.animate({
+                top: 300               
+            });
+            box.animate({
+                left: 0,
+                top:300               
+            });
+            box.animate({
+                left: 0,
+                top: 0              
+            });
+            
+                
+        });
+
 
     });
 </script>
