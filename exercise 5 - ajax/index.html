@@ -30,55 +30,22 @@
             margin: auto;
             padding: 10px;
         }
-        #box{
-            background: #333;
-            color:#fff;
-            width: 500px;
-            height: 90px;
-            padding: 40px;
-            text-align: center;
-        }
-        #box2{
-            background: red;
-            width: 100px;
-            height: 100px;
-            position: relative;
-            
-            }
+        
     </style>
   </head>
   <body>
     <header>
-        <h1>JQuery Crash Course</h1>
+        <h1>JQuery Crash Course | Ajax</h1>
     </header>
     <div id="container">
-        <button id="btnFadeOut">Fade Out</button>
-        <button id="btnFadeIn">Fade in</button>
-        <button id="btnFadeTog">Fade Toggle</button>
-        
-        <hr>
-
-        <button id="btnSlideUp">Slide up</button>
-        <button id="btnSlideDown">Slide down</button>
-        <button id="btnSlideTog">Slide Toggle</button>
-        <button id="btnStop">Stop</button>
-
-        <hr>
-
-        <div id="box">
-            <h1>Hello World</h1>
-        </div>
-
-        <hr>
-
-        <button id="btnMoveLeft">Move Left</button>
-        <button id="btnMoveRight">Move Right</button>
-        <button id="btnMoveAround">Move Around</button>
-
-        <div id="box2">
-            
-        </div>
-
+        <div id="result"></div>
+        <ul id="users"></ul>
+        <form id="postForm" action="http://jsonplaceholder.typicode.com/posts">
+            <input type="text" id="title" placeholder="Title">
+            <br>
+        <textarea id="body" cols="30" rows="10" placeholder="Body"></textarea>
+           <br><input type="submit" value="Submit">
+    </form>
        
     </div>
     
@@ -87,75 +54,44 @@
 <script>
     $(document).ready(function(){
        
-        $('#btnFadeOut').click(function(){
-            $('#box').fadeOut(3000, function(){
-                $('#btnFadeOut').text('Its gone');
-            });
-        });
-        $('#btnFadeIn').click(function(){
-            $('#box').fadeIn(3000);
-                
-        });
-        $('#btnFadeTog').click(function(){
-            $('#box').fadeToggle(1000);
-                
-        });
-        $('#btnSlideUp').click(function(){
-            $('#box').slideUp(3000);
-                
-        });
-        $('#btnSlideDown').click(function(){
-            $('#box').slideDown(3000);
-                
-        });
-        $('#btnSlideTog').click(function(){
-            $('#box').slideToggle(1000);
-                
-        });
-        $('#btnStop').click(function(){
-            $('#box').stop();
-                
-        });
+    //    $('#result').load('test.html', function(responseTxt, statusTxt, xhr){
+    //        if(statusTxt == "success"){
+    //            alert('It went fine');
+    //        }else if (statusTxt == "error"){
+    //            alert("Error: "+xhr.statusText);
+    //        }
+    //    });
+        // $.get('test.html', function(data){
+        //     $('#result').html(data);
+        // });
+        // $.getJSON('users.json', function(data){
+        //     $.each(data, function(i, user){
+        //         $('ul#users').append('<li>'+user.firstName);
+        //     });
+        // });
+        // $.ajax({
+        //     method: 'GET',
+        //     url: 'https://jsonplaceholder.typicode.com/posts',
+        //     dataType: 'json'
+        // }).done(function(data){
+        //     console.log(data);
+        //     $.map(data, function(post, i){
+        //         $('#result').append('<h3>'+post.title+'</h3><p>'+post.body+'</p>');
+        //     });
+        // });
+       $('#postForm').submit(function(e){
+        e.preventDefault();
 
+        var title = $('#title').val();
+        var body = $('#body').val();
+        var url = $(this).attr('action');
 
-        $('#btnMoveRight').click(function(){
-            $('#box2').animate({
-                left: 500,
-                height: '300px',
-                width: '300px',
-                opacity: '0.5'
-            });
-                
-        });
-        $('#btnMoveLeft').click(function(){
-            $('#box2').animate({
-                left: 0,
-                height: '100px',
-                width: '100px',
-                opacity: '1'
-            });
-                
-        });
-        $('#btnMoveAround').click(function(){
-            var box = $('#box2')
-            box.animate({
-                left: 300                
-            });
-            box.animate({
-                top: 300               
-            });
-            box.animate({
-                left: 0,
-                top:300               
-            });
-            box.animate({
-                left: 0,
-                top: 0              
-            });
-            
-                
-        });
-
+        $.post(url, {title:title, body:body})
+            .done(function(data){
+                console.log('Post Saved');
+                console.log(data);
+            })
+       });
 
     });
 </script>

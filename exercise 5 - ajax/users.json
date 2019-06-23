@@ -1,0 +1,22 @@
+[
+{
+    "firstName": "Jelle",
+    "lastName" : "Traa",
+    "email": "jelletraa@gmail.com"
+},
+{
+    "firstName": "Willem",
+    "lastName" : "De Vries",
+    "email": "w.devries@hotmail.com"
+},
+{
+    "firstName": "Bob",
+    "lastName" : "Marley",
+    "email": "b.marley@live.com"
+},
+{
+    "firstName": "Kempie",
+    "lastName" : "Woensel",
+    "email": "k.woensel@hetnet.com"
+}
+]
